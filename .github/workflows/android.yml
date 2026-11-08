@@ -52,8 +52,13 @@ jobs:
           test -x "$ANDROID_HOME/platform-tools/adb"
           test -d "$ANDROID_HOME/platforms/android-34"
           test -d "$ANDROID_HOME/build-tools/34.0.0"
+          echo "JAVA_HOME=$JAVA_HOME"
+          echo "ANDROID_HOME=$ANDROID_HOME"
+          ls -la "$ANDROID_HOME/ndk"
+          ls -la "$ANDROID_HOME/build-tools/34.0.0"
+          ls -la "$HOME/.local/share/godot/export_templates/4.3.stable"
           godot --headless --path . --editor --quit --verbose
-          godot --headless --path . --export-debug "Android" build/NeonRun3D.apk --verbose
+          godot --headless --path . --export-debug "Android" build/NeonSwitch.apk --verbose
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
