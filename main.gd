@@ -174,7 +174,7 @@ func _spawn_obstacle() -> void:
 	world_root.add_child(obstacle)
 
 func _spawn_coin_line() -> void:
-	var x := LANES[rng.randi_range(0, 2)]
+	var x: float = float(LANES[rng.randi_range(0, 2)])
 	for i in range(5):
 		var coin := Area3D.new()
 		coin.position = Vector3(x, 1.25, SPAWN_Z - i * 1.7)
