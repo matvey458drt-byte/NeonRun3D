@@ -46,8 +46,14 @@ jobs:
       - name: Export debug APK
         run: |
           mkdir -p build
-          godot --headless --path . --editor --quit
-          godot --headless --path . --export-debug "Android" build/NeonRun3D.apk
+          echo "=== Godot editor settings ==="
+          cat "$HOME/.config/godot/editor_settings-4.tres"
+          echo "=== Android SDK diagnostics ==="
+          test -x "$ANDROID_HOME/platform-tools/adb"
+          test -d "$ANDROID_HOME/platforms/android-34"
+          test -d "$ANDROID_HOME/build-tools/34.0.0"
+          godot --headless --path . --editor --quit --verbose
+          godot --headless --path . --export-debug "Android" build/NeonRun3D.apk --verbose
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
